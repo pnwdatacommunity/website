@@ -24,8 +24,8 @@ The new site won't be live in time to carry Day of Data traffic, so patch the ol
 
 ## Phase 1: GitHub organization and repo (~30 min)
 
-1. Create a **free organization**: github.com → *+* → *New organization* → name `oregondatacommunity`.
-   If the name is taken, use another name and update `repo` in `hugo.toml`, the `www` CNAME below, and the links in `content/`.
+1. Create a **free organization**: github.com → *+* → *New organization* → name **`pnwdatacommunity`** (chosen to match the likely PNW Data Community brand; the org hosts the site whatever the final domain is).
+   If the name is taken, pick another and run: `Select-String -Path hugo.toml,content\*\*.md,docs\*.md -Pattern pnwdatacommunity` to find every reference.
 2. Invite the co-president as a second **Owner**, so the site survives either of you stepping down.
 3. In PowerShell:
 
@@ -39,12 +39,12 @@ gh auth login                                   # GitHub.com → HTTPS → brows
 Expand-Archive "$HOME\Downloads\odc-website.zip" "$HOME\source"   # creates ...\source\website
 cd "$HOME\source\website"
 hugo server                                     # look at http://localhost:1313 first
-gh repo create oregondatacommunity/website --public --source . --remote origin --push
+gh repo create pnwdatacommunity/website --public --source . --remote origin --push
 ```
 
 4. Repo → **Settings → Pages → Source: GitHub Actions**. The setting applies immediately.
 5. **Actions** tab → "Deploy site" → it should go green. The site is now live at
-   `https://oregondatacommunity.github.io/website/`. CSS paths work there because the workflow passes the Pages base URL.
+   `https://pnwdatacommunity.github.io/website/`. CSS paths work there because the workflow passes the Pages base URL.
 
 ## Phase 2: import the old content (~20 min, first real PR)
 
@@ -67,8 +67,13 @@ git push -u origin import/wordpress ; gh pr create --fill
 
 ## Phase 3: point oregondatacommunity.org at GitHub (any time; no email at risk)
 
+> **Hold until the name is decided.** If the rebrand to *PNW Data Community* goes ahead, do this phase with
+> `pnwdatacommunity.org` instead (same records, same steps), and make `oregondatacommunity.org` a 301 redirect
+> at Bluehost like `oregonsql.org` in Phase 4. GitHub Pages serves one custom domain per site; every other
+> domain is a redirect. **Register `pnwdatacommunity.org` and `.com` now either way**, in the group's account.
+
 1. **Verify the domain first** (it prevents domain takeover):
-   GitHub org → **Settings → Pages → Add a domain** → `oregondatacommunity.org`. GitHub shows a TXT record named `_github-pages-challenge-oregondatacommunity`. Add it at Bluehost (**Domains → oregondatacommunity.org → DNS**), then click *Verify*.
+   GitHub org → **Settings → Pages → Add a domain** → `oregondatacommunity.org`. GitHub shows a TXT record named `_github-pages-challenge-pnwdatacommunity`. Add it at Bluehost (**Domains → oregondatacommunity.org → DNS**), then click *Verify*.
 2. In the same Bluehost DNS zone:
    - **Delete** the `@` A record `66.81.203.198` (and any `@` AAAA).
    - **Add** these records:
@@ -83,7 +88,7 @@ git push -u origin import/wordpress ; gh pr create --fill
 | AAAA | @ | 2606:50c0:8001::153 |
 | AAAA | @ | 2606:50c0:8002::153 |
 | AAAA | @ | 2606:50c0:8003::153 |
-| CNAME | www | oregondatacommunity.github.io |
+| CNAME | www | pnwdatacommunity.github.io |
 
 3. Repo → **Settings → Pages → Custom domain** → `oregondatacommunity.org` → Save. With an Actions deployment this setting is what counts; no `CNAME` file is needed.
 4. Check it, then turn on **Enforce HTTPS** once the option appears. The certificate can take up to 24 hours.

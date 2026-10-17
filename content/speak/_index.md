@@ -21,6 +21,6 @@ Tell us, and we'll help you get ready.
 
 ## How to propose
 
-Send a title, a short abstract and a line about you to [outreach@oregonsql.org](mailto:outreach@oregonsql.org), or [open a talk proposal on GitHub](https://github.com/oregondatacommunity/website/issues/new?template=talk-proposal.yml).
+Send a title, a short abstract and a line about you to [outreach@oregonsql.org](mailto:outreach@oregonsql.org), or [open a talk proposal on GitHub](https://github.com/pnwdatacommunity/website/issues/new?template=talk-proposal.yml).
 
 If you want to speak at **PNW Day of Data**, its call for speakers runs on Sessionize each spring and is announced here and on Meetup.

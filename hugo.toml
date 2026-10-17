@@ -23,7 +23,7 @@ timeZone = "America/Los_Angeles"
   meetupODC = "https://www.meetup.com/oregonsql/"
   meetupPartner = "https://www.meetup.com/portland-azure-user-group/"
   x = "https://x.com/OregonSQL"
-  repo = "https://github.com/oregondatacommunity/website"
+  repo = "https://github.com/pnwdatacommunity/website"
 
 [menus]
   [[menus.main]]

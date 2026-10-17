@@ -1,0 +1,18 @@
+{{- /* Site-wide Day of Data banner. Shows from 120 days before until the day after the event.
+     Hidden on the Day of Data page itself. The site rebuilds daily, so this switches off on its own. */ -}}
+{{- with hugo.Data.dayofdata.current }}
+  {{- $d := time.AsTime .date }}
+  {{- /* Whole calendar days from today (Pacific) to the event; DST-safe via rounding. */}}
+  {{- $today := time.AsTime (now.Format "2006-01-02") }}
+  {{- $days := int (math.Round (div (float (sub $d.Unix $today.Unix)) 86400)) }}
+  {{- if and (ge $days -1) (le $days 120) (ne $.Section "day-of-data") }}
+  <div class="dod-banner">
+    <div class="wrap dod-row">
+      <p><strong>{{ .name }}</strong> · {{ $d.Format "Saturday, January 2" }} · {{ .venue }}
+        {{- if ge $days 2 }} <span class="pill">{{ $days }} days to go</span>{{ else if eq $days 1 }} <span class="pill">Tomorrow</span>{{ else if eq $days 0 }} <span class="pill">Today</span>{{ end }}
+      </p>
+      <a class="btn btn-light" href="{{ .register_url }}">Register free</a>
+    </div>
+  </div>
+  {{- end }}
+{{- end }}

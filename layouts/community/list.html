@@ -1,0 +1,31 @@
+{{ define "main" }}
+<article class="wrap page">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  {{- with hugo.Data.community }}
+  {{- with .partners }}
+  <h2>Partner group</h2>
+  {{ partial "group-cards.html" . }}
+  {{- end }}
+
+  <h2>Regional events</h2>
+  {{ partial "community-events.html" (dict) }}
+
+  {{- with .regional_groups }}
+  <h2>Other groups in the region</h2>
+  {{ partial "group-cards.html" . }}
+  {{- end }}
+
+  {{- with .virtual_groups }}
+  <h2>Great online groups</h2>
+  {{ partial "group-cards.html" . }}
+  {{- end }}
+
+  {{- with .directories }}
+  <h2>Find more</h2>
+  <ul class="plain">{{ range . }}<li><a href="{{ .url }}">{{ .name }}</a></li>{{ end }}</ul>
+  {{- end }}
+  {{- end }}
+</article>
+{{ end }}

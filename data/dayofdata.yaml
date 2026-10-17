@@ -1,0 +1,28 @@
+# PNW Day of Data — the current edition drives the home-page banner and /day-of-data.
+# After the event: move `current` into `past`, then fill `current` when the next date is set.
+# Dates are quoted strings (YYYY-MM-DD) so the templates can parse them reliably.
+
+current:
+  name: "PNW Day of Data 2026"
+  edition: 1149
+  date: "2026-11-07"
+  precon_date: "2026-11-06"
+  start_time: "8:00 AM"
+  cost: "Free Saturday conference · Friday pre-cons have a nominal fee"
+  venue: "Washington State University Vancouver"
+  address: "14204 NE Salmon Creek Ave, Vancouver, WA 98686"
+  organizers:
+    - "Oregon Data Community"
+    - "WSU Vancouver MIS Club"
+  register_url: "https://www.zeffy.com/en-US/ticketing/pnw-day-of-data--2026"
+  info_url: "https://dayofdata.org/2026-11-07-dayofdata1149/"
+  sponsors:
+    - tier: "Global"
+      names: ["Microsoft"]
+    - tier: "Gold"
+      names: ["WSU Vancouver", "WSU Vancouver MIS Club", "Redgate"]
+    - tier: "Silver"
+      names: ["SkyPoint", "Lexicon Solutions", "ProFocus Technology", "Ludia Consulting"]
+
+# Formerly SQL Saturday Oregon & SW Washington. Add prior editions here as you confirm them.
+past: []

@@ -1,0 +1,41 @@
+# Monthly meetings. Since Jan 2026, ODC and the Portland Azure Data User Group
+# run one coordinated schedule (Portland + Vancouver, in person and remote).
+#
+# Add a meeting: copy a block under `upcoming`, edit, commit. Past dates drop off
+# the "upcoming" lists automatically (the site rebuilds daily).
+# `date` is ISO 8601 with the Pacific offset: -07:00 (PDT) or -08:00 (PST).
+
+upcoming:
+  - date: "2026-10-21T17:30:00-07:00"
+    title: "End-to-End Database DevOps: Building Automated CI/CD Pipelines for Azure SQL"
+    speaker: ""
+    format: "Online"
+    host: "Portland Azure Data User Group"
+    url: "https://www.meetup.com/portland-azure-user-group/"
+
+  - date: "2026-11-07T08:00:00-08:00"
+    title: "PNW Day of Data 2026 (replaces the November meeting)"
+    speaker: ""
+    format: "In person · WSU Vancouver"
+    host: "Oregon Data Community"
+    url: "day-of-data/"   # internal links: no leading slash
+
+past:
+  - date: "2026-10-08"
+    title: "Microsoft SQL Engineering Connection Series: Post-SQLCon"
+    speaker: ""
+  - date: "2025-09-17"
+    title: "Introduction to PostgreSQL for the Data Professional"
+    speaker: "Ryan Booz & Grant Fritchey"
+  - date: "2025-08-02"   # old post title says 8/2/25; the third Wednesday was 8/20 — confirm
+    title: "Memory Grants in Azure SQL"
+    speaker: "Torsten Strauss"
+  - date: "2025-07-16"
+    title: "SQL Horror Stories"
+    speaker: "Kevin Kline"
+  - date: "2025-06-18"
+    title: "Connecting Private Endpoints to Everything Analytical"
+    speaker: "David Campman"
+  - date: "2025-05-21"
+    title: "Handling User Error in Power BI Reports"
+    speaker: "Robin Abramson"

@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="wrap page">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  {{- with hugo.Data.organizers.people }}
+  <h2>Organizers</h2>
+  <ul class="plain">
+    {{- range . }}
+    <li>{{ with .url }}<a href="{{ . }}">{{ end }}<strong>{{ .name }}</strong>{{ with .url }}</a>{{ end }} — {{ .role }}</li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  <h2>Contact</h2>
+  <p><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
+</article>
+{{ end }}

@@ -1,0 +1,24 @@
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-title">Oregon Data Community</p>
+      <p class="muted">{{ site.Params.tagline }}. Organizers of PNW Day of Data.</p>
+    </div>
+    <div>
+      <p class="footer-title">Find us</p>
+      <ul class="plain">
+        <li><a href="{{ site.Params.meetupODC }}">Meetup: Oregon Data Community</a></li>
+        <li><a href="{{ site.Params.meetupPartner }}">Meetup: Portland Azure Data UG</a></li>
+        <li><a href="{{ site.Params.x }}">X: @OregonSQL</a></li>
+        <li><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-title">This site</p>
+      <ul class="plain">
+        <li><a href="{{ "posts/" | relURL }}">News &amp; past meetings</a></li>
+        <li><a href="{{ site.Params.repo }}">Source on GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

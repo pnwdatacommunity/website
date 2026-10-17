@@ -1,0 +1,9 @@
+<div class="cards">
+  {{- range . }}
+  <div class="card">
+    <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
+    {{- with .where }}<p class="muted small">{{ . }}</p>{{ end }}
+    {{- with .blurb }}<p>{{ . }}</p>{{ end }}
+  </div>
+  {{- end }}
+</div>

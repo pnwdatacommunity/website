@@ -1,0 +1,52 @@
+baseURL = "https://oregondatacommunity.org/"
+locale = "en-US"
+title = "Oregon Data Community"
+enableRobotsTXT = true
+timeZone = "America/Los_Angeles"
+
+# Same URL shape as the old WordPress.com site (oregonsql.org/2025/09/15/slug/),
+# so a path-preserving 301 from oregonsql.org lands on the right post.
+[permalinks]
+  posts = "/:year/:month/:day/:slug/"
+
+[taxonomies]
+  tag = "tags"
+
+# Imported WordPress posts are HTML; let it render.
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  description = "Oregon & SW Washington's data community: monthly user group meetings, PNW Day of Data, and the people who keep data platforms running."
+  tagline = "Data professionals in Oregon & SW Washington"
+  email = "outreach@oregonsql.org"
+  meetupODC = "https://www.meetup.com/oregonsql/"
+  meetupPartner = "https://www.meetup.com/portland-azure-user-group/"
+  x = "https://x.com/OregonSQL"
+  repo = "https://github.com/oregondatacommunity/website"
+
+[menus]
+  [[menus.main]]
+    name = "Meetings"
+    pageRef = "/meetings"
+    weight = 10
+  [[menus.main]]
+    name = "Day of Data"
+    pageRef = "/day-of-data"
+    weight = 20
+  [[menus.main]]
+    name = "Community"
+    pageRef = "/community"
+    weight = 30
+  [[menus.main]]
+    name = "Speak"
+    pageRef = "/speak"
+    weight = 40
+  [[menus.main]]
+    name = "Sponsor"
+    pageRef = "/sponsor"
+    weight = 50
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 60

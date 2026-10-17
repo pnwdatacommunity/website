@@ -1,0 +1,56 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Oregon &amp; SW Washington</p>
+    <h1>The people who keep data running, meeting monthly.</h1>
+    <p class="lede">{{ site.Params.description }}</p>
+    <div class="actions">
+      <a class="btn" href="{{ site.Params.meetupODC }}">Join on Meetup</a>
+      <a class="btn btn-ghost" href="{{ "speak/" | relURL }}">Give a talk</a>
+    </div>
+  </div>
+</section>
+
+{{- with hugo.Data.dayofdata.current }}
+{{- $d := time.AsTime .date }}
+{{- if ge $d.Unix (sub now.Unix 86400) }}
+<section class="wrap feature">
+  <div class="feature-card">
+    <div>
+      <p class="eyebrow">Our annual conference</p>
+      <h2>{{ .name }}</h2>
+      <p class="big">{{ $d.Format "Saturday, January 2, 2006" }}</p>
+      <p>{{ .venue }} · {{ .address }}</p>
+      <p class="muted">{{ .cost }}</p>
+    </div>
+    <div class="feature-actions">
+      <a class="btn" href="{{ .register_url }}">Register</a>
+      <a class="btn btn-ghost" href="{{ "day-of-data/" | relURL }}">Details &amp; sponsors</a>
+    </div>
+  </div>
+</section>
+{{- end }}
+{{- end }}
+
+<section class="wrap section">
+  <div class="section-head">
+    <h2>Coming up</h2>
+    <a href="{{ "meetings/" | relURL }}">All meetings →</a>
+  </div>
+  {{ partial "meeting-list.html" (dict "limit" 3) }}
+</section>
+
+<section class="wrap section two-col">
+  <div>
+    <h2>One schedule, two groups</h2>
+    <p>Since January 2026, Oregon Data Community and the
+      <a href="{{ site.Params.meetupPartner }}">Portland Azure Data User Group</a> run a single coordinated
+      schedule in Portland and Vancouver, in person and remote. Third Wednesday evenings, with food.</p>
+  </div>
+  <div>
+    <h2>Around the region</h2>
+    {{ partial "community-events.html" (dict "limit" 3) }}
+    <p><a href="{{ "community/" | relURL }}">Groups and events we support →</a></p>
+  </div>
+</section>
+{{ end }}

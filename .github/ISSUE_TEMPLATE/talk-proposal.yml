@@ -1,0 +1,40 @@
+name: Talk proposal
+description: Propose a talk for an Oregon Data Community meeting
+title: "Talk: "
+labels: ["talk-proposal"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Talk title
+    validations:
+      required: true
+  - type: textarea
+    id: abstract
+    attributes:
+      label: Abstract
+      description: 2–4 sentences. What will people be able to do afterwards?
+    validations:
+      required: true
+  - type: dropdown
+    id: format
+    attributes:
+      label: How would you present?
+      options: ["In person (Portland)", "In person (Vancouver)", "Remote", "Either"]
+    validations:
+      required: true
+  - type: input
+    id: months
+    attributes:
+      label: Months that work for you
+  - type: textarea
+    id: bio
+    attributes:
+      label: About you
+      description: One or two lines, plus a link if you have one.
+  - type: checkboxes
+    id: first
+    attributes:
+      label: First talk?
+      options:
+        - label: This would be my first user group talk

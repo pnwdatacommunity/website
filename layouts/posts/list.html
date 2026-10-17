@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article class="wrap page">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  {{- with .Pages.ByDate.Reverse }}
+  <ul class="plain post-list">
+    {{- range . }}
+    <li><span class="muted mono">{{ .Date.Format "2006-01-02" }}</span> <a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{- end }}
+  </ul>
+  {{- else }}
+  <p class="empty">Past posts are being moved over from the old site.</p>
+  {{- end }}
+</article>
+{{ end }}

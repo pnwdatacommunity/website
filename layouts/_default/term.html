@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="wrap page">
+  <h1>#{{ .Title }}</h1>
+  <ul class="plain post-list">
+    {{- range .Pages.ByDate.Reverse }}
+    <li><span class="muted mono">{{ .Date.Format "2006-01-02" }}</span> <a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{- end }}
+  </ul>
+</article>
+{{ end }}

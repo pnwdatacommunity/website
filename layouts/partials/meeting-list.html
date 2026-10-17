@@ -1,0 +1,28 @@
+{{- /* Upcoming meetings from data/meetings.yaml. Context: dict "limit" N */ -}}
+{{- $limit := .limit | default 50 }}
+{{- $upcoming := slice }}
+{{- range hugo.Data.meetings.upcoming }}
+  {{- $t := time.AsTime .date }}
+  {{- if ge $t.Unix (sub now.Unix 10800) }}{{ $upcoming = $upcoming | append (merge . (dict "t" $t)) }}{{ end }}
+{{- end }}
+{{- $upcoming = sort $upcoming "t" "asc" }}
+{{- if $upcoming }}
+<ol class="events">
+  {{- range first $limit $upcoming }}
+  <li class="event">
+    <div class="event-date" aria-hidden="true">
+      <span class="m">{{ .t.Format "Jan" }}</span><span class="d">{{ .t.Format "2" }}</span>
+    </div>
+    <div>
+      <h3 class="event-title">{{ with .url }}<a href="{{ . | relURL }}">{{ end }}{{ .title }}{{ with .url }}</a>{{ end }}</h3>
+      <p class="muted">{{ .t.Format "Monday, January 2 · 3:04 PM MST" }}{{ with .format }} · {{ . }}{{ end }}{{ with .host }} · {{ . }}{{ end }}</p>
+      {{- with .speaker }}<p>{{ . }}</p>{{ end }}
+    </div>
+  </li>
+  {{- end }}
+</ol>
+{{- else }}
+<p class="empty">The next meeting is being scheduled. Watch
+  <a href="{{ site.Params.meetupODC }}">our Meetup</a> and
+  <a href="{{ site.Params.meetupPartner }}">the Portland Azure Data UG</a>.</p>
+{{- end }}

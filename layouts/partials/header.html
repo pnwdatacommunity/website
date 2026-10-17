@@ -1,0 +1,18 @@
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="{{ "" | relURL }}">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28"><path d="M16 3 L28 26 H4 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M10 26 L16 15 L22 26" fill="currentColor" opacity=".35"/></svg>
+      </span>
+      <span class="brand-text">Oregon Data Community</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      {{- $current := . }}
+      {{- range site.Menus.main }}
+      <a href="{{ .URL }}"{{ if $current.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{- end }}
+    </nav>
+  </div>
+</header>
+{{ partial "dod-banner.html" . }}

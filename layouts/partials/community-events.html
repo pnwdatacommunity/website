@@ -1,0 +1,21 @@
+{{- $limit := .limit | default 50 }}
+{{- $list := slice }}
+{{- range hugo.Data.community.events }}
+  {{- $end := time.AsTime .end }}
+  {{- if ge $end.Unix (sub now.Unix 86400) }}{{ $list = $list | append (merge . (dict "t" (time.AsTime .start))) }}{{ end }}
+{{- end }}
+{{- $list = sort $list "t" "asc" }}
+{{- if $list }}
+<ul class="plain stack">
+  {{- range first $limit $list }}
+  {{- $e := time.AsTime .end }}
+  <li>
+    <a href="{{ .url }}"><strong>{{ .name }}</strong></a><br>
+    <span class="muted">{{ .t.Format "Jan 2" }}{{ if ne (.t.Format "2006-01-02") ($e.Format "2006-01-02") }}–{{ if eq (.t.Format "Jan") ($e.Format "Jan") }}{{ $e.Format "2" }}{{ else }}{{ $e.Format "Jan 2" }}{{ end }}{{ end }} · {{ .where }}</span>
+    {{- with .note }}<br><span class="muted small">{{ . }}</span>{{ end }}
+  </li>
+  {{- end }}
+</ul>
+{{- else }}
+<p class="empty">Nothing on the regional calendar right now.</p>
+{{- end }}

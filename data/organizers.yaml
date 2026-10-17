@@ -1,0 +1,8 @@
+# Leadership shown on /about. Add the rest of the board, then remove this comment.
+people:
+  - name: "Michael Wall"
+    role: "Co-president"
+    url: "https://becomingamaster.com/"
+  # - name: ""
+  #   role: "Co-president"
+  #   url: ""

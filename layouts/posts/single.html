@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="wrap page">
+  <p class="muted mono">{{ .Date.Format "January 2, 2006" }}</p>
+  <h1>{{ .Title }}</h1>
+  <div class="prose">{{ .Content }}</div>
+  {{- with .GetTerms "tags" }}
+  <p class="tags">{{ range . }}<a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a> {{ end }}</p>
+  {{- end }}
+  <p><a href="{{ "posts/" | relURL }}">← All posts</a></p>
+</article>
+{{ end }}

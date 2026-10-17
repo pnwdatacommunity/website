@@ -1,0 +1,46 @@
+# Other groups and events we support. Only list entries with a verified URL.
+# Commented entries are TODOs: confirm the link, then uncomment.
+
+partners:
+  - name: "Portland Azure Data User Group"
+    blurb: "Our co-host. Monthly meetings run on one shared Portland/Vancouver schedule."
+    url: "https://www.meetup.com/portland-azure-user-group/"
+    where: "Portland, OR · hybrid"
+
+regional_groups: []
+  # - name: "Salem Data Community"
+  #   blurb: ""
+  #   url: ""
+  #   where: "Salem, OR"
+  # - name: "Olympia Area SQL Server User Group"
+  #   blurb: ""
+  #   url: ""
+  #   where: "Olympia, WA"
+
+virtual_groups: []
+  # Strong online groups worth sending members to:
+  # - name: "Database Professionals Virtual Group"
+  #   url: ""
+  # - name: "Cloud Data Driven"
+  #   url: ""
+  # - name: "DBA Fundamentals"
+  #   url: ""
+
+# Regional events. Drop off automatically after `end`.
+events:
+  - name: "PASS Data Community Summit (West)"
+    where: "Seattle, WA"
+    start: "2026-11-09"
+    end: "2026-11-11"
+    note: "Pre-cons 9 Nov, main conference 10–11 Nov."
+    url: "https://passdatacommunitysummit.com/"
+  - name: "Seattle Day of Data 2026 (PG Edition)"
+    where: "Seattle Public Library, Seattle, WA"
+    start: "2026-11-13"
+    end: "2026-11-13"
+    note: "Date shown as 13 Nov on the event page; confirm before travelling."
+    url: "https://dayofdata.org/2026-11-12-dayofdata1155/"
+
+directories:
+  - name: "Day of Data (formerly SQL Saturday) — all events"
+    url: "https://dayofdata.org/"

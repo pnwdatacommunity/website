@@ -1,0 +1,7 @@
+public/
+resources/_gen/
+.hugo_build.lock
+# The raw WordPress export contains subscriber/commenter emails. Never commit it.
+*.xml
+!static/**/*.xml
+import/

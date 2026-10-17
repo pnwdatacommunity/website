@@ -1,0 +1,38 @@
+{{ define "main" }}
+<article class="wrap page">
+  {{- with hugo.Data.dayofdata.current }}
+  {{- $d := time.AsTime .date }}
+  {{- $p := time.AsTime .precon_date }}
+  <p class="eyebrow">Formerly SQL Saturday Oregon &amp; SW Washington</p>
+  <h1>{{ .name }}</h1>
+  <div class="feature-card">
+    <div>
+      <p class="big">{{ $d.Format "Saturday, January 2, 2006" }} · {{ .start_time }}</p>
+      <p>Pre-cons: {{ $p.Format "Friday, January 2" }}</p>
+      <p>{{ .venue }}<br>{{ .address }}</p>
+      <p class="muted">{{ .cost }}</p>
+    </div>
+    <div class="feature-actions">
+      <a class="btn" href="{{ .register_url }}">Register</a>
+      <a class="btn btn-ghost" href="{{ .info_url }}">Event page &amp; schedule</a>
+    </div>
+  </div>
+  {{- end }}
+
+  {{ .Content }}
+
+  {{- with hugo.Data.dayofdata.current }}
+  <h2>Organized by</h2>
+  <p>{{ delimit .organizers ", " " and " }}.</p>
+
+  <h2>Thank you to our sponsors</h2>
+  {{- range .sponsors }}
+  <div class="tier">
+    <h3>{{ .tier }}</h3>
+    <ul class="sponsor-list">{{ range .names }}<li>{{ . }}</li>{{ end }}</ul>
+  </div>
+  {{- end }}
+  <p><a href="{{ "sponsor/" | relURL }}">Interested in sponsoring? →</a></p>
+  {{- end }}
+</article>
+{{ end }}

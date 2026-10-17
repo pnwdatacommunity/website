@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article class="wrap page">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <h2>Upcoming</h2>
+  {{ partial "meeting-list.html" (dict) }}
+
+  {{- with hugo.Data.meetings.past }}
+  <h2>Recent meetings</h2>
+  <ul class="plain past">
+    {{- range sort . "date" "desc" }}
+    {{- $t := time.AsTime .date }}
+    <li><span class="muted mono">{{ $t.Format "2006-01-02" }}</span> {{ .title }}{{ with .speaker }} <span class="muted">— {{ . }}</span>{{ end }}</li>
+    {{- end }}
+  </ul>
+  {{- end }}
+
+  {{- $posts := where site.RegularPages "Section" "posts" }}
+  {{- with $posts }}
+  <p><a href="{{ "posts/" | relURL }}">Full meeting write-ups and news ({{ len . }}) →</a></p>
+  {{- end }}
+</article>
+{{ end }}

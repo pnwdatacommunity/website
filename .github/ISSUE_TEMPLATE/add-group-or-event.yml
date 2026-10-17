@@ -1,0 +1,25 @@
+name: Add a group or event
+description: Suggest a user group or data event for the Community page
+title: "Community: "
+labels: ["community"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Link (Meetup, website or Sessionize)
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where (city, or "online")
+  - type: input
+    id: when
+    attributes:
+      label: Dates (events only)

@@ -26,6 +26,7 @@ timeZone = "America/Los_Angeles"
   # SendFox signup form slug: SendFox → Grow → All forms → Get code → the data-form="…" value.
   # Leave empty to hide the signup box.
   sendfoxForm = ""
+  sendfoxURL = "https://sendfox.com/form/1x8jlz/1g0vvx"
 
 [menus]
   [[menus.main]]

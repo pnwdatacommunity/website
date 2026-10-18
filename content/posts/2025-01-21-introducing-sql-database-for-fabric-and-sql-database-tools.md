@@ -2,7 +2,7 @@
 title: 'Introducing SQL Database for Fabric and SQL Database Tools'
 date: 2025-01-21T18:00:59
 slug: 'introducing-sql-database-for-fabric-and-sql-database-tools'
-tags: ['Future Meetings', 'Meetings']
+tags: ['meeting']
 wp_url: 'https://oregonsql.org/2025/01/21/introducing-sql-database-for-fabric-and-sql-database-tools/'
 ---
 

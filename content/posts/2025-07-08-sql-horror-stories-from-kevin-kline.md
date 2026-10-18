@@ -2,9 +2,8 @@
 title: '7/16/25: SQL Horror Stories from Kevin Kline'
 date: 2025-07-08T16:22:03
 slug: 'sql-horror-stories-from-kevin-kline'
-description: 'Join Kevin Kline as he takes you on a guided tour of some of the worst and most horrible SQL coding experiences. Some were intention and some were accidental. But all of them will make you wince and laugh! Learn new SQL coding tips and tricks from these cautionary tales. 
- His product designs for database tools have won numerous awards at industry trade shows and from a variety of trade magazines. He is on social media as @kekline and blogs regularly.'
-tags: ['Meetings', 'Past Meetings']
+description: 'Kevin Kline takes you on a guided tour of some of the worst SQL coding experiences, some intentional and some accidental, with tips and tricks drawn from each cautionary tale.'
+tags: ['meeting']
 wp_url: 'https://oregonsql.org/2025/07/08/sql-horror-stories-from-kevin-kline/'
 ---
 
@@ -13,8 +12,6 @@ wp_url: 'https://oregonsql.org/2025/07/08/sql-horror-stories-from-kevin-kline/'
 <p><strong>Kevin Kline is a noted database expert and software industry veteran. A 20-year Microsoft Data Platform MVP and noted community leader in the IT industry, Kevin is a founder and former president of the Professional Association for SQL Server (PASS.ORG), as well as the author of popular IT books including the bestseller "SQL in a Nutshell". Kevin is a top-rated speaker at industry trade shows worldwide and has a monthly column at Database Trends &amp; Applications magazine (DBTA.com). His product designs for database tools have won numerous awards at industry trade shows and from a variety of trade magazines. He is on social media as @kekline and blogs regularly.</strong></p>
 
 <hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<p><a href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZDdmMTVhNjMtZjhkMS00ODc1LWFhYzEtNDVlYWU5ODQ3YmEx%40thread.v2/0?context=%7b%22Tid%22%3a%22b4c9f32e-da17-4ded-9c95-ce9da38f25d9%22%2c%22Oid%22%3a%223667bd06-7474-4ecc-87fd-d1307322185c%22%7d"><strong>Join the Teams meeting here</strong></a></p>
 
 <hr class="wp-block-separator has-alpha-channel-opacity" />
 

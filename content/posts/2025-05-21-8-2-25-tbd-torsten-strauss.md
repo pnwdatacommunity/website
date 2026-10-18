@@ -2,9 +2,8 @@
 title: '8/2/25 Torsten Strauss: Azure SQL Memory Grant'
 date: 2025-05-21T16:37:45
 slug: '8-2-25-tbd-torsten-strauss'
-description: 'Memory Grant in Azure SQL
-When SQL Server executes a query, it requires memory to store temporary data for sorting and joining rows. In this deep dive session, you will learn about the intricacies of memory grants, including how they are requested, allocated, and used during query execution.'
-tags: ['Meetings', 'Past Meetings']
+description: 'Memory Grant in Azure SQL When SQL Server executes a query, it requires memory to store temporary data for sorting and joining rows. In this deep dive session, you will learn about the intricacies of memory grants, including how they are requested, allocated, and used during query execution.'
+tags: ['meeting']
 wp_url: 'https://oregonsql.org/2025/05/21/8-2-25-tbd-torsten-strauss/'
 ---
 

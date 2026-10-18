@@ -2,13 +2,13 @@
 title: '5/21/25 Handling User Error in Power BI Reports'
 date: 2025-05-21T15:08:36
 slug: 'handling-user-error-in-power-bi-reports'
-tags: ['ai', 'artificial-intelligence', 'digital-marketing', 'Meetings', 'Past Meetings', 'power-bi', 'technology']
+tags: ['meeting', 'power-bi']
 wp_url: 'https://oregonsql.org/2025/05/21/handling-user-error-in-power-bi-reports/'
 ---
 
 <p>presented by Robin Abramson</p>
 
-<figure class="wp-block-image size-large"><img src="https://sqlserverbiblog8.wordpress.com/wp-content/uploads/2025/05/image.png?w=150" alt="" class="wp-image-127" /></figure>
+<figure class="wp-block-image size-large"><img src="/images/wp/2025/05/image.png" alt="" class="wp-image-127" /></figure>
 
 <p>Welcome to the May 21st 1800 HRS PST/2100 HRS EST, 2025 HYBRID meeting!</p>
 
@@ -45,7 +45,3 @@ wp_url: 'https://oregonsql.org/2025/05/21/handling-user-error-in-power-bi-report
 <p>Her consulting career has spanned leading roles at IBM, Pragmatic Works, 3Cloud, and Fresche Analytics—where she now serves as Power Platform Principal—delivering end-to-end analytics solutions, from data modeling and dashboard design to interactive report storytelling. Robin also served on the PASS Board of Directors (2001–2002) as Director of Member Products and Services, shaping community-driven SQL Server resources.</p>
 
 <p>Known for quickly mastering emerging technologies, Robin combines deep expertise in database and systems architecture with a keen eye for visualization best practices and user-centric design. Her collaborative approach and proven track record make her a trusted advisor for organizations seeking innovative, reliable, and insight-driven Power BI solutions.</p>
-
-<p>Here’s Robin!</p>
-
-<figure class="wp-block-image alignleft"><img src="http://oregonsql.org/wp/wp-content/uploads/RobinAbramson-150x150.png" alt="" class="wp-image-5608" /></figure>

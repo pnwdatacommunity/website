@@ -1,11 +1,13 @@
 # Other groups and events we support. Only list entries with a verified URL.
 # Commented entries are TODOs: confirm the link, then uncomment.
 
+# Partner groups. Their Meetup events are pulled in automatically (scripts/Sync-Meetup.ps1, kind: partner)
+# and listed under "Around the region", never as our own meetings.
 partners:
   - name: "Portland Azure Data User Group"
-    blurb: "Our co-host. Monthly meetings run on one shared Portland/Vancouver schedule."
+    blurb: "Fellow Azure Data Tech Groups member. We share speakers, cross-promote, and co-host PNW Day of Data outreach."
     url: "https://www.meetup.com/portland-azure-user-group/"
-    where: "Portland, OR · hybrid"
+    where: "Portland, OR"
 
 regional_groups: []
   # - name: "Salem Data Community"

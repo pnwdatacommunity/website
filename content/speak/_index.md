@@ -13,7 +13,7 @@ description: "Give a talk at Oregon Data Community: first-time speakers and remo
 
 ## Remote speakers
 
-Every meeting is hybrid, so you can present from anywhere. Our evenings start around 5:30–6:00 PM Pacific.
+Every meeting is streamed, so you can present from anywhere. Our evenings start around 6:00 PM Pacific. Local? Once we're back in the room in Vancouver, we'd love to have you there in person.
 
 ## First time?
 

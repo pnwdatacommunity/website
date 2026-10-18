@@ -1,8 +1,21 @@
+{{- /* Regional events: data/community.yaml plus partner groups' Meetup events (data/meetup.json),
+     skipping any start time that is already one of our own meetings. */ -}}
 {{- $limit := .limit | default 50 }}
+{{- $ours := dict }}
+{{- range hugo.Data.meetings.upcoming }}{{ $ours = merge $ours (dict (string (time.AsTime .date).Unix) true) }}{{ end }}
+{{- with hugo.Data.meetup }}{{ range where .events "kind" "!=" "partner" }}{{ $ours = merge $ours (dict (string (time.AsTime .date).Unix) true) }}{{ end }}{{ end }}
 {{- $list := slice }}
 {{- range hugo.Data.community.events }}
   {{- $end := time.AsTime .end }}
   {{- if ge $end.Unix (sub now.Unix 86400) }}{{ $list = $list | append (merge . (dict "t" (time.AsTime .start))) }}{{ end }}
+{{- end }}
+{{- with hugo.Data.meetup }}
+  {{- range where .events "kind" "partner" }}
+    {{- $t := time.AsTime .date }}
+    {{- if and (ge $t.Unix (sub now.Unix 10800)) (not (index $ours (string $t.Unix))) }}
+      {{- $list = $list | append (dict "name" .title "url" .url "where" .host "start" .date "end" .date "t" $t "note" "") }}
+    {{- end }}
+  {{- end }}
 {{- end }}
 {{- $list = sort $list "t" "asc" }}
 {{- if $list }}

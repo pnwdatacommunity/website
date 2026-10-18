@@ -21,9 +21,13 @@
 param(
     [string]$RepoRoot = (Split-Path -Parent $PSScriptRoot),
     # urlname = the part after meetup.com/ ; host = label shown on the site.
+    # kind 'odc'     = our own meetings (shown under Meetings / Coming up).
+    # kind 'partner' = another group's events (shown under Around the region).
+    # ODC meetings are cross-posted to other Meetup groups for reach; only the ODC
+    # group is read here, so cross-posts never show up twice.
     [object[]]$Groups = @(
-        @{ urlname = 'oregonsql';               host = 'Oregon Data Community' },
-        @{ urlname = 'portland-azure-user-group'; host = 'Portland Azure Data User Group' }
+        @{ urlname = 'oregonsql';                 host = 'Oregon Data Community';          kind = 'odc' },
+        @{ urlname = 'portland-azure-user-group'; host = 'Portland Azure Data User Group'; kind = 'partner' }
     )
 )
 
@@ -59,7 +63,7 @@ function ConvertFrom-IcsDate([string]$params, [string]$value, [TimeZoneInfo]$def
     return [DateTimeOffset]::new($dt, $zone.GetUtcOffset($dt))
 }
 
-function Get-MeetupEvents([string]$urlname, [string]$hostName, [TimeZoneInfo]$zone, [int]$rank) {
+function Get-MeetupEvents([string]$urlname, [string]$hostName, [string]$kind, [TimeZoneInfo]$zone, [int]$rank) {
     $url = "https://www.meetup.com/$urlname/events/ical/"
     $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 30 -Headers @{ 'User-Agent' = 'pnwdatacommunity-website (+https://github.com/pnwdatacommunity/website)' }
     $text = if ($resp.Content -is [byte[]]) { [Text.Encoding]::UTF8.GetString($resp.Content) } else { [string]$resp.Content }
@@ -89,6 +93,7 @@ function Get-MeetupEvents([string]$urlname, [string]$hostName, [TimeZoneInfo]$zo
             format  = if ($props.ContainsKey('LOCATION') -and $props['LOCATION'][1].Trim()) { ConvertFrom-IcsText $props['LOCATION'][1] } else { '' }
             summary = $summary
             source  = 'meetup'
+            kind    = $kind
             _utc    = $start.UtcTicks
             _rank   = $rank
         }
@@ -103,7 +108,8 @@ $rank = 0
 foreach ($g in $Groups) {
     $rank++
     try {
-        $found = Get-MeetupEvents $g.urlname $g.host $zone $rank
+        $kind = if ($g.kind) { $g.kind } else { 'odc' }
+        $found = Get-MeetupEvents $g.urlname $g.host $kind $zone $rank
         Write-Host ("{0,-28} {1} upcoming" -f $g.urlname, @($found).Count)
         $all += $found
     } catch {

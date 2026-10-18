@@ -1,7 +1,6 @@
-# Monthly meetings. Since Jan 2026, ODC and the Portland Azure Data User Group
-# run one coordinated schedule (Portland + Vancouver, in person and remote).
+# Oregon Data Community meetings.
 #
-# Meetings scheduled on either group's Meetup appear on the site automatically
+# Meetings scheduled on the ODC Meetup group (meetup.com/oregonsql) appear on the site automatically
 # (scripts/Sync-Meetup.ps1 runs on every build, including the daily one).
 # Only add an entry under `upcoming` for something NOT on Meetup, or to override how
 # a Meetup event is shown: an entry with the same start time replaces it.
@@ -15,12 +14,10 @@ upcoming:
     host: "Oregon Data Community"
     url: "day-of-data/"   # internal links: no leading slash
 
-  - date: "2026-12-16T08:00:00-08:00"
-    title: "No December meeting - enjoy the holidays!"
-    speaker: ""
-    format: "No meeting"
-    host: "Oregon Data Community"
-    url: "https://www.meetup.com/portland-azure-user-group/"   
+  # notice: true shows the date without a time, e.g. for a skipped month.
+  - date: "2026-12-16T18:00:00-08:00"
+    title: "No December meeting. Enjoy the holidays!"
+    notice: true
 
 past:
   - date: "2026-10-08"

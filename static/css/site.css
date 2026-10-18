@@ -122,3 +122,5 @@ ul.plain li { padding: .2rem 0; }
 /* Newsletter signup */
 .newsletter { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin: 1.5rem 0; }
 .newsletter h2 { margin-top: 0; }
+.event-notice { background: transparent; border-style: dashed; }
+.event-notice .event-date { background: var(--line); color: var(--muted); }

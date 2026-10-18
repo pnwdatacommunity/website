@@ -20,6 +20,13 @@ upcoming:
     host: "Oregon Data Community"
     url: "day-of-data/"   # internal links: no leading slash
 
+  - date: "2026-12-16T08:00:00-08:00"
+    title: "No December meeting - enjoy the holidays!"
+    speaker: ""
+    format: "No meeting"
+    host: "Oregon Data Community"
+    url: "https://www.meetup.com/portland-azure-user-group/"   
+
 past:
   - date: "2026-10-08"
     title: "Microsoft SQL Engineering Connection Series: Post-SQLCon"

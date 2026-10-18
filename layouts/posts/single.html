@@ -2,7 +2,8 @@
 <article class="wrap page">
   <p class="muted mono">{{ .Date.Format "January 2, 2006" }}</p>
   <h1>{{ .Title }}</h1>
-  <div class="prose">{{ .Content }}</div>
+  {{- /* Imported posts use root-relative image paths; prefix the site base so they also work under /website/. */}}
+  <div class="prose">{{ .Content | replaceRE `(src|href)="/images/` (printf `$1="%simages/` ("" | relURL)) | safeHTML }}</div>
   {{- with .GetTerms "tags" }}
   <p class="tags">{{ range . }}<a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a> {{ end }}</p>
   {{- end }}

@@ -10,7 +10,10 @@
   - Images under /wp-content/uploads/ (oregonsql.org, *.files.wordpress.com, i0-i3.wp.com)
     are downloaded to static/images/wp/<yyyy>/<mm>/ and links rewritten,
     so nothing still depends on WordPress.com once the plan is cancelled.
-  - Gutenberg block comments (<!-- wp:... -->) are stripped. The HTML body is kept as-is.
+  - Gutenberg block comments (<!-- wp:... -->) are stripped. The HTML body is otherwise kept as-is.
+  - Paragraphs containing a Teams join link are removed (dead on past meetings; they carry tenant IDs).
+  - Posts with an empty body are skipped, with a warning that gives the alias to keep their URL alive.
+  - Tags: -MeetingTag names become 'meeting'; -DropTag names (WordPress.com auto-tags) are dropped.
 
   Works on Windows PowerShell 5.1 and PowerShell 7. Writes UTF-8 without BOM.
 
@@ -25,7 +28,11 @@ param(
     [Parameter(Mandatory)][string]$XmlPath,
     [string]$RepoRoot = (Split-Path -Parent $PSScriptRoot),
     [switch]$SkipImages,   # keep image links pointing at WordPress (no download)
-    [switch]$Force   # overwrite existing .md files
+    [switch]$Force,  # overwrite existing .md files
+    # WordPress.com auto-suggested tags that don't describe a user-group meeting.
+    [string[]]$DropTag = @('ai', 'artificial-intelligence', 'digital-marketing', 'technology'),
+    # Old category names folded into one tag. Past/Future flip over time; the site works that out from dates.
+    [string[]]$MeetingTag = @('Meetings', 'Past Meetings', 'Future Meetings')
 )
 
 Set-StrictMode -Version 2.0
@@ -63,14 +70,24 @@ foreach ($d in @($postsDir, $pagesDir)) {
     if (-not (Test-Path $d)) { New-Item -ItemType Directory -Path $d -Force -WhatIf:$false | Out-Null }
 }
 
-# Matches upload URLs in src/href/srcset. Group 'path' = yyyy/mm/file.ext
-$imgPattern = '(?i)https?://(?:i[0-3]\.wp\.com/)?(?:[a-z0-9.-]+\.)?(?:oregonsql\.org|files\.wordpress\.com)/(?:[a-z0-9.-]+/)?wp-content/uploads/(?<path>\d{4}/\d{2}/[^"''\s?#)]+)(?:\?[^"''\s)]*)?|https?://[a-z0-9-]+\.files\.wordpress\.com/(?<path2>\d{4}/\d{2}/[^"''\s?#)]+)(?:\?[^"''\s)]*)?'
+# Upload URLs in src/href/srcset, on any host the site has used:
+#   oregonsql.org/wp-content/uploads/...        (custom domain)
+#   oregonsql.org/wp/wp-content/uploads/...     (old self-hosted install)
+#   <site>.wordpress.com/wp-content/uploads/... (the export's canonical host)
+#   i0-i3.wp.com/<host>/wp-content/uploads/...  (Photon CDN)
+#   <site>.files.wordpress.com/yyyy/mm/...      (legacy file host)
+# Group 'path' / 'path2' = everything after uploads/ (usually yyyy/mm/file.ext).
+$imgPattern = '(?i)https?://(?:i[0-3]\.wp\.com/)?(?:www\.)?(?:oregonsql\.org|[a-z0-9-]+\.wordpress\.com)(?:/wp)?/wp-content/uploads/(?<path>[^"''\s?#)<>]+)(?:\?[^"''\s)<>]*)?|https?://[a-z0-9-]+\.files\.wordpress\.com/(?<path2>\d{4}/\d{2}/[^"''\s?#)<>]+)(?:\?[^"''\s)<>]*)?'
+# Paragraphs carrying a Teams join link. Past meetings don't need one, and the link carries tenant/organizer IDs.
+$teamsPattern = '(?is)<p>(?:(?!</p>).)*teams\.microsoft\.com/l/meetup-join(?:(?!</p>).)*</p>\s*'
 
 $downloaded = @{}
-$stats = [ordered]@{ Posts = 0; Pages = 0; Skipped = 0; Images = 0; ImageErrors = 0 }
+$stats = [ordered]@{ Posts = 0; Pages = 0; Skipped = 0; EmptySkipped = 0; TeamsLinksRemoved = 0; Images = 0; ImageErrors = 0 }
 
 function Convert-Body([string]$html) {
     $html = [regex]::Replace($html, '<!--\s*/?wp:[\s\S]*?-->\r?\n?', '')
+    $teams = [regex]::Matches($html, $teamsPattern).Count
+    if ($teams) { $script:stats.TeamsLinksRemoved += $teams; $html = [regex]::Replace($html, $teamsPattern, '') }
     $evaluator = {
         param($m)
         $rel = if ($m.Groups['path'].Success) { $m.Groups['path'].Value } else { $m.Groups['path2'].Value }
@@ -114,12 +131,20 @@ foreach ($item in $doc.SelectNodes('//channel/item')) {
     $link  = Get-Text $item 'link' $ns
     if (-not $slug) { $slug = ($title.ToLowerInvariant() -replace '[^a-z0-9]+', '-').Trim('-') }
 
+    if (-not ($body -replace '<[^>]+>|&nbsp;|\s', '')) {
+        # Placeholder posts ("TBD") with no body. Its old URL can be kept alive with an alias on the real post.
+        $path = ([Uri]$link).AbsolutePath
+        Write-Warning "Empty $type skipped: '$title'. To keep its old URL working, add to the replacing post's front matter:  aliases: ['$path']"
+        $stats.EmptySkipped++; continue
+    }
+
     $dt = [datetime]::ParseExact($date, 'yyyy-MM-dd HH:mm:ss', [Globalization.CultureInfo]::InvariantCulture)
 
     $tags = @()
     foreach ($c in $item.SelectNodes('category')) {
         $v = $c.InnerText.Trim()
-        if ($v -and $v -ne 'Uncategorized' -and $tags -notcontains $v) { $tags += $v }
+        if ($MeetingTag -contains $v) { $v = 'meeting' }
+        if ($v -and $v -ne 'Uncategorized' -and $DropTag -notcontains $v -and $tags -notcontains $v) { $tags += $v }
     }
 
     $fm = New-Object System.Text.StringBuilder
@@ -127,7 +152,7 @@ foreach ($item in $doc.SelectNodes('//channel/item')) {
     [void]$fm.AppendLine('title: ' + (ConvertTo-YamlString $title))
     [void]$fm.AppendLine('date: ' + $dt.ToString('yyyy-MM-ddTHH:mm:ss'))
     [void]$fm.AppendLine('slug: ' + (ConvertTo-YamlString $slug))
-    if ($exc.Trim()) { [void]$fm.AppendLine('description: ' + (ConvertTo-YamlString ($exc -replace '<[^>]+>', ''))) }
+    if ($exc.Trim()) { [void]$fm.AppendLine('description: ' + (ConvertTo-YamlString (($exc -replace '<[^>]+>', '') -replace '\s+', ' '))) }
     if ($tags.Count) {
         $quoted = @(); foreach ($t in $tags) { $quoted += (ConvertTo-YamlString $t) }
         [void]$fm.AppendLine('tags: [' + ($quoted -join ', ') + ']')

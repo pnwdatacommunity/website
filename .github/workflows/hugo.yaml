@@ -1,10 +1,13 @@
 # Build the Hugo site and publish to GitHub Pages.
 # Runs on every push to main, daily at ~5 AM Pacific (so past meetings and the
 # Day of Data banner drop off by themselves), and on demand from the Actions tab.
+# Pull requests get the build only, as a check: nothing is published until merge.
 name: Deploy site
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   schedule:
     - cron: "17 12 * * *"   # 12:17 UTC daily
@@ -16,7 +19,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 defaults:
@@ -41,6 +44,11 @@ jobs:
           tar -xzf "${{ runner.temp }}/hugo.tar.gz" -C "${{ runner.temp }}/hugo"
           echo "${{ runner.temp }}/hugo" >> "$GITHUB_PATH"
 
+      - name: Pull upcoming events from Meetup
+        # Public iCal feeds; a Meetup outage only means the site shows data/meetings.yaml alone.
+        run: pwsh -NoProfile -File scripts/Sync-Meetup.ps1
+        continue-on-error: true
+
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v6
@@ -54,6 +62,7 @@ jobs:
           path: ./public
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:

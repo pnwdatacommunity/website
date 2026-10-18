@@ -6,7 +6,10 @@ Source for **https://oregondatacommunity.org**. It's a [Hugo](https://gohugo.io)
 
 | To change… | Edit | Notes |
 |---|---|---|
-| Upcoming / past meetings | `data/meetings.yaml` | Past dates disappear from "upcoming" on the next daily build. |
+| Upcoming meetings | **Nothing — schedule them on Meetup.** | Both groups' Meetup events are pulled in on every build (`scripts/Sync-Meetup.ps1`). Run it locally before `hugo server` to see them. |
+| Past meetings, or anything not on Meetup | `data/meetings.yaml` | An entry with the same start time as a Meetup event replaces it. |
+| Newsletter signup box | `sendfoxForm` in `hugo.toml` | SendFox form slug; empty hides the box. |
+| Code of Conduct | `content/code-of-conduct/_index.md` | Required by the Azure Data Tech Groups program; linked in every page footer. |
 | Day of Data (date, venue, registration, sponsors) | `data/dayofdata.yaml` | Drives the site-wide banner (120 days out → day after). |
 | Partner groups, regional events | `data/community.yaml` | Only add entries with a verified link. |
 | Organizers | `data/organizers.yaml` | |

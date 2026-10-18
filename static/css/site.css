@@ -118,3 +118,9 @@ ul.plain li { padding: .2rem 0; }
 .site-footer { margin-top: 4rem; border-top: 1px solid var(--line); background: var(--surface); padding: 32px 0; font-size: .95rem; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
 .footer-title { font-weight: 700; margin: 0 0 .4rem; }
+
+/* Newsletter signup */
+.newsletter { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin: 1.5rem 0; }
+.newsletter h2 { margin-top: 0; }
+.event-notice { background: transparent; border-style: dashed; }
+.event-notice .event-date { background: var(--line); color: var(--muted); }

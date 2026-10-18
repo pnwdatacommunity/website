@@ -4,6 +4,7 @@
   {{ .Content }}
   <h2>Upcoming</h2>
   {{ partial "meeting-list.html" (dict) }}
+  {{ partial "newsletter.html" . }}
 
   {{- with hugo.Data.meetings.past }}
   <h2>Recent meetings</h2>

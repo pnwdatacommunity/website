@@ -1,0 +1,9 @@
+{{- /* SendFox signup. Set params.sendfoxForm in hugo.toml to the form's slug
+     (SendFox → Grow → All forms → Get code: the data-form="…" value). Renders nothing until set. */ -}}
+{{- with site.Params.sendfoxForm }}
+<section class="newsletter" aria-labelledby="newsletter-h">
+  <h2 id="newsletter-h">Get the monthly email</h2>
+  <p class="muted">Upcoming meetings and Day of Data news, about once a month. Unsubscribe any time.</p>
+  <script src="https://sendfox.com/js/embed.js" data-form="{{ . }}" data-api="https://sendfox.com" async></script>
+</section>
+{{- end }}

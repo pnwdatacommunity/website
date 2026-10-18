@@ -1,18 +1,13 @@
 # Monthly meetings. Since Jan 2026, ODC and the Portland Azure Data User Group
 # run one coordinated schedule (Portland + Vancouver, in person and remote).
 #
-# Add a meeting: copy a block under `upcoming`, edit, commit. Past dates drop off
-# the "upcoming" lists automatically (the site rebuilds daily).
+# Meetings scheduled on either group's Meetup appear on the site automatically
+# (scripts/Sync-Meetup.ps1 runs on every build, including the daily one).
+# Only add an entry under `upcoming` for something NOT on Meetup, or to override how
+# a Meetup event is shown: an entry with the same start time replaces it.
 # `date` is ISO 8601 with the Pacific offset: -07:00 (PDT) or -08:00 (PST).
 
 upcoming:
-  - date: "2026-10-21T17:30:00-07:00"
-    title: "End-to-End Database DevOps: Building Automated CI/CD Pipelines for Azure SQL"
-    speaker: ""
-    format: "Online"
-    host: "Portland Azure Data User Group"
-    url: "https://www.meetup.com/portland-azure-user-group/"
-
   - date: "2026-11-07T08:00:00-08:00"
     title: "PNW Day of Data 2026 (replaces the November meeting)"
     speaker: ""

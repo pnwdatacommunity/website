@@ -5,3 +5,5 @@ resources/_gen/
 *.xml
 !static/**/*.xml
 import/
+# Generated at build time by scripts/Sync-Meetup.ps1
+data/meetup.json

@@ -24,6 +24,9 @@ timeZone = "America/Los_Angeles"
   meetupPartner = "https://www.meetup.com/portland-azure-user-group/"
   x = "https://x.com/OregonSQL"
   repo = "https://github.com/pnwdatacommunity/website"
+  # SendFox signup form slug: SendFox → Grow → All forms → Get code → the data-form="…" value.
+  # Leave empty to hide the signup box.
+  sendfoxForm = ""
 
 [menus]
   [[menus.main]]
